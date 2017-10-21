@@ -1,0 +1,29 @@
+Merge K sorted lists
+
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        ListNode root=null;
+      ArrayList<Integer>valueList=new ArrayList<>();
+        for(int i=0;i<lists.length;i++){
+            ListNode node=lists[i];
+            while(node!=null){
+                valueList.add(node.val); //collecting all values
+                node=node.next;
+            }
+        }
+        
+        Collections.sort(valueList);
+         ListNode tempNode=root;
+        for(int value:valueList){
+            if(root==null){
+                root=new ListNode(value);
+                tempNode=root;
+            }else{
+               
+                tempNode.next=new ListNode(value);
+                tempNode=tempNode.next;
+            }
+        }
+        return root;
+    }
+}
