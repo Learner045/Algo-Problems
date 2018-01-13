@@ -1,0 +1,66 @@
+public class HelloWorld {
+  static int arr[]=new int[]{35,82,9,90,3};
+  public static void main(String[] args) {
+    System.out.println("Hello World");
+    
+    int matrix[][]=new int[10][5];
+    int bucketCounter[]=new int[10];
+    for(int i=0;i<10;i++){
+    bucketCounter[i]=0;
+    for(int j=0;j<5;j++){
+    matrix[i][j]=-1;
+    }}
+    
+    int length=2;
+    int placeCounter=1;
+    int placeIndex=0; int num=0;
+    while(length!=0){
+    
+    for(int i=0;i<5;i++){
+    num=arr[i];
+    
+    for(int p=placeCounter;p!=0;p--){
+    placeIndex=num%10;
+    num=num/10;
+    }
+    //put els in bucket
+    matrix[placeIndex][bucketCounter[placeIndex]]=arr[i];
+    bucketCounter[placeIndex]++;
+    
+    }//end of for
+    
+    //remove all els from bucket
+     int row=0,col=0;
+    for(int j=0;j<5;j++){
+    
+    while(matrix[row][col]==-1){
+    row++;
+    col=0;
+    }//end of while
+    
+    arr[j]=matrix[row][col];
+    col++;
+    }//end of j for loop
+    
+    
+    //Reinitialize everything
+     for(int i=0;i<10;i++){
+    bucketCounter[i]=0;
+    for(int j=0;j<5;j++){
+    matrix[i][j]=-1;
+    }}
+    
+    placeCounter++;
+    length--;
+    }//end of while
+    
+   Print();
+    for(int k=0;k<10;k++){
+    for(int f=0;f<5;f++){ System.out.print(matrix[k][f]+" ");}
+    System.out.println();}
+  }
+  public static void Print(){
+  
+  for(int x:arr)System.out.print(x+" ");
+  }
+}
