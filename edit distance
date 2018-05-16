@@ -1,0 +1,35 @@
+public class Solution {
+    public int minDistance(String A, String B) {
+        int count=0;
+        if(A.equals(""))return B.length();
+        if(B.equals(""))return A.length();
+        if(A.equals("") && B.equals(""))return 0;
+        int a = A.length();
+        int b =B.length();
+        int matrix[][] = new int[a+1][b+1];
+        
+        
+        
+        for(int i=0;i<=b;i++){
+            matrix[0][i]=i;
+        }
+        
+         for(int i=0;i<=a;i++){
+            matrix[i][0]=i;
+         }
+         
+         
+         for(int i=1;i<=a;i++){
+             for(int j=1;j<=b;j++){
+                 if(A.charAt(i-1)==B.charAt(j-1)){
+                     matrix[i][j]=matrix[i-1][j-1];
+                 }else{
+                     matrix[i][j]=Math.min(matrix[i-1][j],Math.min(matrix[i-1][j-1],
+                     matrix[i][j-1]))+1;             
+                 }
+             }
+         }
+         
+         return matrix[a][b];
+    }
+}
