@@ -1,0 +1,28 @@
+public class Solution {
+    public ArrayList<String> generateParenthesis(int A) {
+        int n = A;
+        ArrayList<String> list = new ArrayList<String>();
+        StringBuilder res =new StringBuilder();
+        generate(res, 0 , 0 ,n , list);
+        
+        return list;
+    }
+    //3 (((
+    public void generate(StringBuilder res , int LC , int RC, int n, ArrayList<String> list){
+        if(LC+RC==2*n){
+            list.add(res.toString());
+            
+        }
+        
+        if(LC<n){
+            res.append("(");
+            generate(res, LC+1, RC, n, list);
+            res.deleteCharAt(res.length()-1);
+        }
+        if(RC<LC){
+            res.append(")");
+            generate(res, LC, RC+1,n, list);
+            res.deleteCharAt(res.length()-1);
+        }
+    }
+}
