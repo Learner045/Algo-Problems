@@ -1,0 +1,32 @@
+public class Solution {
+    public int jump(ArrayList<Integer> A) {
+        
+        int n =A.size();
+        int [] arr = new int[n];
+        //if(A.get(0)==0)return -1;
+        if(n<=1)return 0;
+         if(A.get(0)==0)return -1;
+         int ladder = A.get(0);
+         int stairs = A.get(0);
+         int count=1;//jump count 
+         
+         //st = current stair
+         for(int st = 1 ; st<n ;st++){
+             
+             if(st==n-1)return count;//last stair reached
+             
+             int jumps = A.get(st);
+             if(st+jumps>ladder){
+                 ladder = st+jumps;//new bigger ladder with more stairs avail
+             }
+             
+             stairs--;//current stair used up
+             
+             if(stairs==0){
+                 count++;//make a jump to a new ladder as current ladder over
+                 stairs = ladder - st;//new stairs in new ladder remaining 
+             }
+         }
+         return -1;
+    }
+}
