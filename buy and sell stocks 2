@@ -1,0 +1,31 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int maxProfit(final List<Integer> A) {
+        int n =A.size();
+        if(n==0)return 0;
+        
+        int maxP=0;
+        
+        int i=0;
+        int local_minima=0;
+        int local_maxima=0;
+        while(i<n){
+            while(i<n-1 && A.get(i)>A.get(i+1)){
+                i++;
+            }
+            if(i>=n)return maxP;
+            local_minima = A.get(i);
+            i++;
+            while(i<n-1 && A.get(i)<A.get(i+1)){
+                i++;
+            }
+             if(i>=n)return maxP;
+            local_maxima = A.get(i);
+            
+            maxP+=(local_maxima - local_minima);
+            i++;
+            
+        }
+        return maxP;
+    }
+}
