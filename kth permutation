@@ -1,0 +1,33 @@
+import java.math.*;
+public class Solution {
+    public String getPermutation(int A, int B) {
+        int k = B-1;
+        ArrayList<Integer> nums = new ArrayList<>();
+        for(int i=1;i<=A;i++){
+            nums.add(i);
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int i=1;i<=A;i++){
+            int fact = fact(A-i).intValue(); //keeping 1 as 1st digit we can find 6 perms.
+            //.similarly with 2 as 1st digit and 2 nums remaining
+            //..we can find 2 perms
+            int index = 0;
+            if(fact>0){
+                index = k/fact;
+            }
+            sb.append(nums.get(index)+"");
+            nums.remove(index);
+            
+            k=k-(index*fact);
+            
+        }
+        return sb.toString();
+    }
+    public BigInteger fact(int num){
+        BigInteger one = BigInteger.ONE;
+        for(int i=2;i<=num;i++){
+            one = one.multiply(BigInteger.valueOf(i));
+        }
+        return one;
+    }
+}
