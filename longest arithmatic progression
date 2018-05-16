@@ -1,0 +1,25 @@
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int solve(final int[] A) {
+        int[] arr = A;
+        
+        int n = A.length;
+        if(n==0)return 0;
+        int lenMax=1;
+        for(int i=0;i<n;i++){
+            for(int j=i+1; j<n;j++){
+                int len=2;
+                int diff = arr[j]-arr[i];
+                int nextVal = diff+arr[j];
+                for(int k=j+1; k<n;k++){
+                    if(nextVal==arr[k]){
+                        len++;
+                        nextVal+=diff;
+                    }
+                }
+                lenMax=Math.max(lenMax,len);
+            }
+        }
+        return lenMax;
+    }
+}
