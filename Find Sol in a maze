@@ -1,0 +1,78 @@
+public class maze {
+
+    int[][] matrix = new int[5][5];
+    int[][] sol = new int[5][5];
+    int[][] visited = new int[5][5];
+
+    public static void main(String[] args) {
+
+        new maze().solve();
+    }
+
+    public void solve(){
+        matrix[0][0]=2;
+        sol[0][0]=2;
+        sol[3][2]=3;
+
+        matrix[0][1]=1; //1 means there's a way
+        matrix[0][2]=1;
+        matrix[0][3]=1;
+        matrix[1][1]=1;
+        matrix[1][4]=1;
+        matrix[0][2]=1;
+        matrix[2][1]=1;
+        matrix[3][1]=1;
+        matrix[3][2]=3;
+
+        try{
+            dfs(0,0);
+            System.out.println("sol not found");
+        }catch (Exception e){
+            System.out.println("sol found");
+            print();
+        }
+    }
+
+    public void dfs(int r, int c) throws Exception{
+        if(!isValid(r,c)){
+            return;
+        }
+        if(visited[r][c]==1) {
+            return;
+        }
+        if(matrix[r][c]==0){
+            return;
+        }
+        if(matrix[r][c]==3){
+            throw new Exception();}
+
+         sol[r][c]=1;
+         visited[r][c]=1;
+
+         dfs(r,c+1);
+         dfs(r+1,c);
+
+         dfs(r-1,c);
+         dfs(r,c-1);
+
+         sol[r][c]=0;
+    }
+
+
+    private boolean isValid(int r, int c) {
+        if(r<0 || r>=matrix.length)return false;
+        if(c<0 || c>=matrix.length)return false;
+
+        return true;
+    }
+
+    public void print(){
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix.length;j++){
+                System.out.print(sol[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    }
