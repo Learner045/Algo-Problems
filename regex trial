@@ -1,0 +1,47 @@
+class regxMatch{
+  static boolean regx_match(String text, String pattern) {
+    if(text.length() == 0 && pattern.length()>0 )return false;
+    int j=0,k=0;
+    for(int i=1; i<pattern.length(); ){
+      
+      
+      
+      if(pattern.charAt(i) == '*'){
+        if(pattern.charAt(j) == '.'){
+          char c = text.charAt(k);
+          k++;
+          while(k<text.length() && text.charAt(k) == c ){
+            k++;
+            System.out.println("k: "+k);
+            if(k == text.length()) return true;
+          }
+          System.out.println("i: "+i+"j:"+j);
+          j=i+1;
+          i=j+1;
+        }else{
+        while(k<text.length() && pattern.charAt(j) == text.charAt(k) ){
+          k++;
+        }
+        if(k == text.length()) return true;
+        j=i+1;
+        i=j+1;
+        }//end of inner else
+      }else if(pattern.charAt(i) == '.'){
+        k++;
+        j++;
+        i++;
+      }else{
+        if(pattern.charAt(j) == text.charAt(k)){
+          i++;j++;k++;
+        }else return false;
+      }
+    }
+
+    if(k<text.length() && j < pattern.length()){
+      if(text.charAt(k) == pattern.charAt(j))return true;
+
+      return false;
+    }
+    return true;
+  }
+}
