@@ -31,7 +31,7 @@ class regxMatch{
         j++;
         i++;
       }else{
-        if(pattern.charAt(j) == text.charAt(k)){
+        if(pattern.charAt(j) == text.charAt(k) || pattern.charAt(j) == '.'){
           i++;j++;k++;
         }else return false;
       }
